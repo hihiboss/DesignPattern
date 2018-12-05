@@ -7,6 +7,16 @@ import View.GUI;
 
 public class DateSalesListener implements ActionListener {
 
+	private double dataSales;
+	private String name;
+	private int playTime;
+
+	public DateSalesListener(double dataSales, String name, int playTime) {
+		this.dataSales = dataSales;
+		this.name = name;
+		this.playTime = playTime;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -17,9 +27,9 @@ public class DateSalesListener implements ActionListener {
 			Controller.getInstance().setDateSales(-1);
 		}
 		
-		if (Controller.getInstance().getDateSales() != -1 &&
-				Controller.getInstance().getName() != null &&
-				Controller.getInstance().getPlayTime() != -1){
+		if (dataSales != -1 &&
+				name != null &&
+				playTime != -1){
 			GUI.getInstance().addInformation.setEnabled(true);
 		}
 	}

@@ -4,7 +4,11 @@ import View.*;
 import java.awt.event.*;
 
 public class BeforePlayListener implements ItemListener {
-	
+
+	public BeforePlayListener() {
+
+	}
+
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
