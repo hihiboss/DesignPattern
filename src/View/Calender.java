@@ -26,8 +26,11 @@ public class Calender extends JPanel implements ActionListener {
     JTextField txtTime;
     BorderLayout bLayout = new BorderLayout();
 
+    private JButton execution;
+
     ////////////////////////////////////////
-    public Calender() {
+    public Calender(JButton execution) {
+        this.execution = execution;
         this.setLayout(bLayout);
         today = Calendar.getInstance(); //디폴트의 타임 존 및 로케일을 사용해 달력을 가져옵니다.
         cal = new GregorianCalendar();
@@ -167,7 +170,7 @@ public class Calender extends JPanel implements ActionListener {
             //버튼의 밸류 즉 1,2,3.... 문자를 정수형으로 변환하여 클릭한 날짜를 바꿔준다.
             Controller.getInstance().setYear(year);
             Controller.getInstance().setMonth(month);
-            GUI.getInstance().execution.setEnabled(true);
+            execution.setEnabled(true);
             for (int h = 0; h < 49; h++) {
                 if (calBtn[h].getText().equals(ae.getActionCommand())) {
                     calBtn[h].setEnabled(false);
