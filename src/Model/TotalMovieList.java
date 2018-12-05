@@ -3,192 +3,201 @@ package Model;
 import java.util.ArrayList;
 
 public class TotalMovieList {
-	private static final TotalMovieList ourInstance = new TotalMovieList();
-	public static TotalMovieList getInstance() {
-		return ourInstance;
-	}
-	private final ArrayList<Integer> movieNumberList = new ArrayList<Integer>();
-	private final ArrayList<Movie> movieList = new ArrayList<Movie>();
-	private final ArrayList<Movie> mList = new ArrayList<Movie>();
-	private final ArrayList<Movie> mSortList = new ArrayList<Movie>();
-	private final ArrayList<String> movieNameList = new ArrayList<String>();
-	private final ArrayList<Integer> priorityList = new ArrayList<Integer>();
-	private int totalNumberMovie;
+    private static final TotalMovieList ourInstance = new TotalMovieList();
 
-	public ArrayList<Movie> getMovieList() {
-		return movieList;
-	}
+    public static TotalMovieList getInstance() {
+        return ourInstance;
+    }
 
-	public ArrayList<String> getMovieNameList() {
-		return movieNameList;
-	}
+    private final ArrayList<Integer> movieNumberList = new ArrayList<Integer>();
+    private final MovieList movieList = new MovieList();
+    private final MovieList mList = new MovieList();
+    private final MovieList mSortList = new MovieList();
+    private final ArrayList<String> movieNameList = new ArrayList<String>();
+    private final ArrayList<Integer> priorityList = new ArrayList<Integer>();
+    private int totalNumberMovie;
 
-	public ArrayList<Integer> getPriorityList() {
-		return priorityList;
-	}
+    public MovieList getMovieList() {
+        return movieList;
+    }
 
-	public ArrayList<Integer> getMovieNumberList() {
-		return movieNumberList;
-	}
+    public ArrayList<String> getMovieNameList() {
+        return movieNameList;
+    }
 
-	public void addMList(Movie movie) {
-		this.mList.add(movie);
-	}
+    public ArrayList<Integer> getPriorityList() {
+        return priorityList;
+    }
 
-	public ArrayList<Movie> getmList() {
-		return mList;
-	}
+    public ArrayList<Integer> getMovieNumberList() {
+        return movieNumberList;
+    }
 
-	public ArrayList<Movie> getmSortList() {
-		return mSortList;
-	}
+    public void addMList(Movie movie) {
+        this.mList.addMovie(movie);
+    }
 
-	public void q_sort(Movie[] movieArray, int left, int right){
-		int l_hold, r_hold, pivot_index;
-		Movie pivot;
-		l_hold = left;
-		r_hold = right;
-		pivot_index = left;
-		pivot = movieArray[left];
-		while (left < right){
-			while((movieArray[right].getPercentSales() <= pivot.getPercentSales()) && (left < right)){
-				right--;
-			}
+    public MovieList getmList() {
+        return mList;
+    }
 
-			if (left != right){
-				movieArray[left] = movieArray[right];
-			}
+    public MovieList getmSortList() {
+        return mSortList;
+    }
 
-			while ((movieArray[left].getPercentSales() >= pivot.getPercentSales()) && (left < right)){
-				left++;
-			}
+    public void q_sort(Movie[] movieArray, int left, int right) {
+        int l_hold, r_hold, pivot_index;
+        Movie pivot;
+        l_hold = left;
+        r_hold = right;
+        pivot_index = left;
+        pivot = movieArray[left];
+        while (left < right) {
+            while ((movieArray[right].getPercentSales() <= pivot.getPercentSales()) && (left < right)) {
+                right--;
+            }
 
-			if (left != right){
-				movieArray[right] = movieArray[left];
-				right--;
-			}
-		}
+            if (left != right) {
+                movieArray[left] = movieArray[right];
+            }
 
-		movieArray[left] = pivot;
-		pivot_index = left;
-		left = l_hold;
-		right = r_hold;
+            while ((movieArray[left].getPercentSales() >= pivot.getPercentSales()) && (left < right)) {
+                left++;
+            }
 
-		if (left < pivot_index){
-			q_sort(movieArray, left, pivot_index - 1);
-		}
-		if (right > pivot_index){
-			q_sort(movieArray, pivot_index + 1, right);
-		}
-	}
+            if (left != right) {
+                movieArray[right] = movieArray[left];
+                right--;
+            }
+        }
 
-	public void setMSortlist() {
-		Movie[] mArray = new Movie[mList.size()];
-		Movie temp;
+        movieArray[left] = pivot;
+        pivot_index = left;
+        left = l_hold;
+        right = r_hold;
 
-		for (int h = 0; h < mList.size(); h++){
-			mArray[h] = this.mList.get(h);
-		}
-		if (mList.size() <= 15){
-			for (int h = 0; h < mList.size(); h++){
-				for (int i = 0; i < mList.size() - (h + 1); i++){
-					if (mArray[i].getPercentSales() < mArray[i + 1].getPercentSales()){
-						temp = mArray[i + 1];
-						mArray[i + 1] = mArray[i];
-						mArray[i] = temp;
-					}
-				}
-			}
-		}
-		else {
-			q_sort(mArray, 0 , mList.size()-1);
-		}
+        if (left < pivot_index) {
+            q_sort(movieArray, left, pivot_index - 1);
+        }
+        if (right > pivot_index) {
+            q_sort(movieArray, pivot_index + 1, right);
+        }
+    }
 
-		for (int h = 0; h < 4; h++){
-			this.mSortList.add(mArray[h]);
-		}
-		for (int h = 4; h < mList.size(); h++){
-			if (mArray[h].getPercentSales() >= 0.04){
-				this.mSortList.add(mArray[h]);
-			}
-		}
-	}
+    public void setMSortlist() {
+        Movie[] mArray = new Movie[mList.getLength()];
+        Movie temp;
 
-	public void setTotalNumberMovie() {
-		double total = 0;
-		int number = 0;
-		for (Movie m : this.mList){
-			total += m.getTime()*m.getPercentSales();
-		}
-		if(total != 0){
-			number = (int)(24 * 6 * 60 / total);
-		}
-		number += (6 - number%6);
-		this.totalNumberMovie = number;
-	}
+        for (int h = 0; h < mList.getLength(); h++) {
+            mArray[h] = this.mList.getMovieAt(h);
+        }
+        if (mList.getLength() <= 15) {
+            for (int h = 0; h < mList.getLength(); h++) {
+                for (int i = 0; i < mList.getLength() - (h + 1); i++) {
+                    if (mArray[i].getPercentSales() < mArray[i + 1].getPercentSales()) {
+                        temp = mArray[i + 1];
+                        mArray[i + 1] = mArray[i];
+                        mArray[i] = temp;
+                    }
+                }
+            }
+        } else {
+            q_sort(mArray, 0, mList.getLength() - 1);
+        }
 
-	public void setPriority(){
-		this.priorityList.clear();
-		int[] number = new int[this.movieNumberList.size()];
-		int temp;
-		for (int h = 0; h < this.movieNumberList.size(); h++){
-			number[h] = movieNumberList.get(h);
-		}
-		for (int h = 0; h < movieNumberList.size(); h++){
-			for (int i = 0; i < movieNumberList.size() - (h + 1); i++){
-				if (number[i] < number[i + 1]){
-					temp = number[i];
-					number[i] = number[i+1];
-					number[i+1] = temp;
-				}
-			}
-		}
-		int priority = 1;
-		int[] prior = new int[this.movieNumberList.size()];
-		for (Integer i : this.movieNumberList){
-			for (int h = 0; h < this.movieNumberList.size(); h++){
-				if (number[h] == i){
-					if (prior[h] != 0){
-						continue;
-					}
-					else{
-						prior[h] = priority;
-						priority++;
-						break;
-					}
-				}
-			}
-		}
-		for (int h = 0; h < this.movieNumberList.size(); h++){
-			this.priorityList.add(prior[h]);
-		}
-	}
-	
-	public void setTimeList() {
-		int h;
-		for (Movie m : this.mSortList){
-			for (h = 0; h < (int)(this.totalNumberMovie * m.getPercentSales()); h++){
-				this.movieList.add(m);
-			}
-			h--;
-			int number = h;
-			this.movieNumberList.add(number);
-			String name = m.getName();
-			this.movieNameList.add(name);
-		}
-	}
+        for (int h = 0; h < 4; h++) {
+            this.mSortList.addMovie(mArray[h]);
+        }
+        for (int h = 4; h < mList.getLength(); h++) {
+            if (mArray[h].getPercentSales() >= 0.04) {
+                this.mSortList.addMovie(mArray[h]);
+            }
+        }
+    }
 
-	public int getTotalNumberMovie() {
-		return totalNumberMovie;
-	}
-	
-	public void setClear(){
-		this.mList.clear();
-		this.mSortList.clear();
-		this.movieList.clear();
-		this.movieNumberList.clear();
-		this.movieNameList.clear();
-		this.priorityList.clear();
-		this.totalNumberMovie = 0;
-	}
+    public void setTotalNumberMovie() {
+        double total = 0;
+        int number = 0;
+
+        Iterator it = this.mList.iterator();
+
+        while (it.hasNext()) {
+            Movie m = (Movie) it.next();
+            total += m.getTime() * m.getPercentSales();
+        }
+
+        if (total != 0) {
+            number = (int) (24 * 6 * 60 / total);
+        }
+        number += (6 - number % 6);
+        this.totalNumberMovie = number;
+    }
+
+    public void setPriority() {
+        this.priorityList.clear();
+        int[] number = new int[this.movieNumberList.size()];
+        int temp;
+        for (int h = 0; h < this.movieNumberList.size(); h++) {
+            number[h] = movieNumberList.get(h);
+        }
+        for (int h = 0; h < movieNumberList.size(); h++) {
+            for (int i = 0; i < movieNumberList.size() - (h + 1); i++) {
+                if (number[i] < number[i + 1]) {
+                    temp = number[i];
+                    number[i] = number[i + 1];
+                    number[i + 1] = temp;
+                }
+            }
+        }
+        int priority = 1;
+        int[] prior = new int[this.movieNumberList.size()];
+        for (Integer i : this.movieNumberList) {
+            for (int h = 0; h < this.movieNumberList.size(); h++) {
+                if (number[h] == i) {
+                    if (prior[h] != 0) {
+                        continue;
+                    } else {
+                        prior[h] = priority;
+                        priority++;
+                        break;
+                    }
+                }
+            }
+        }
+        for (int h = 0; h < this.movieNumberList.size(); h++) {
+            this.priorityList.add(prior[h]);
+        }
+    }
+
+    public void setTimeList() {
+        int h;
+
+        Iterator it = this.mSortList.iterator();
+        while(it.hasNext()) {
+            Movie m = (Movie) it.next();
+
+            for (h = 0; h < (int) (this.totalNumberMovie * m.getPercentSales()); h++) {
+                this.movieList.addMovie(m);
+            }
+            h--;
+            int number = h;
+            this.movieNumberList.add(number);
+            String name = m.getName();
+            this.movieNameList.add(name);
+        }
+    }
+
+    public int getTotalNumberMovie() {
+        return totalNumberMovie;
+    }
+
+    public void setClear() {
+        this.mList.clear();
+        this.mSortList.clear();
+        this.movieList.clear();
+        this.movieNumberList.clear();
+        this.movieNameList.clear();
+        this.priorityList.clear();
+        this.totalNumberMovie = 0;
+    }
 }

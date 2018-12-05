@@ -3,16 +3,16 @@ package Model;
 import java.util.*;
 
 public class Theater {
-   private ArrayList <Movie> movieList = new ArrayList<Movie>();
+   private MovieList movieList = new MovieList();
    private int playTime = 0;
    private int seatingCapacity = 0;
    private int startTime = 0;
    
-   public ArrayList<Movie> getMovieList() {
+   public MovieList getMovieList() {
 	   return movieList;
    }
    public void addMovieList(int get, Movie element){
-	   this.movieList.add(get, element);
+	   this.movieList.addMovieAt(get, element);
    }
    public int getPlayTime() {
 	   return playTime;
