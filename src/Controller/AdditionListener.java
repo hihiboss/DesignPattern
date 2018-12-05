@@ -18,7 +18,9 @@ public class AdditionListener implements ActionListener {
 				if (Controller.getInstance().getDateSales() != -1 &&
 						Controller.getInstance().getName() != null &&
 						Controller.getInstance().getPlayTime() != -1){
-					ShowingMovie movie = new ShowingMovie(Controller.getInstance().getDateSales());
+					double dateSales = Controller.getInstance().getDateSales();
+					Movie movie = MovieFactory.getMovie(new ShowingMovieFactory(dateSales));
+
 					movie.setName(Controller.getInstance().getName());
 					movie.setTime(Controller.getInstance().getPlayTime());
 					TotalMovieList.getInstance().addMList(movie);
@@ -42,11 +44,13 @@ public class AdditionListener implements ActionListener {
 						Controller.getInstance().getName() != null &&
 						Controller.getInstance().getPlayTime() != -1 &&
 						Controller.getInstance().getReleaseDate() != -1){
-					PreShowingMovie movie = new PreShowingMovie(
-							Controller.getInstance().getGenre()
-							,Controller.getInstance().getAge()
-							,Controller.getInstance().getExpect()
-							,Controller.getInstance().getNation());
+					String genre = Controller.getInstance().getGenre();
+					int age = Controller.getInstance().getAge();
+					double expect = Controller.getInstance().getExpect();
+					String nation = Controller.getInstance().getNation();
+
+					Movie movie = MovieFactory.getMovie(new PreShowingMovieFactory(genre, age, expect, nation));
+
 					movie.setName(Controller.getInstance().getName());
 					movie.setTime(Controller.getInstance().getPlayTime());
 					TotalMovieList.getInstance().addMList(movie);
