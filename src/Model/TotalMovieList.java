@@ -3,10 +3,7 @@ package Model;
 import java.util.ArrayList;
 
 public class TotalMovieList {
-	private static final TotalMovieList ourInstance = new TotalMovieList();
-	public static TotalMovieList getInstance() {
-		return ourInstance;
-	}
+
 	private final ArrayList<Integer> movieNumberList = new ArrayList<Integer>();
 	private final ArrayList<Movie> movieList = new ArrayList<Movie>();
 	private final ArrayList<Movie> mList = new ArrayList<Movie>();
