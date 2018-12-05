@@ -3,10 +3,6 @@ package Model;
 import java.util.*;
 
 public class TimeScheduleList {
-	private static final TimeScheduleList ourInstance = new TimeScheduleList();
-	public static TimeScheduleList getInstance() {
-		return ourInstance;
-	}
 	
 	private ArrayList<TimeSchedule> timeschedulelist = new ArrayList<TimeSchedule>();
 	

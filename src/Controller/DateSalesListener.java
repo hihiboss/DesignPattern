@@ -7,6 +7,9 @@ import View.GUI;
 
 public class DateSalesListener implements ActionListener {
 
+	private double dataSales;
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
