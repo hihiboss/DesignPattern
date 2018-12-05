@@ -64,19 +64,20 @@ public class PreShowingMovie extends Movie {
 	public double getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		double point;
+
 		switch(age){
-		case 15:
+		case "15세 이용가":
 			point = 41.5;
 			break;
-		case 12:
+		case "12세 이용가":
 			point = 37.6;
 			break;
-		case 19:
+		case "19세 이용가":
 			point = 8.7;
 			break;
-		case 1:
+		case "전체 이용가":
 			point = 12.2;
 			break;
 		default:
@@ -130,10 +131,10 @@ public class PreShowingMovie extends Movie {
 	}
 
 	public void pointToSales() {
-		if (releaseDate == "������"){
+		if (releaseDate == "수요일"){
 			setSales((this.point * 3 * 100000000 - 7 * 1000000000) * 0.1263);
 		}
-		else if (releaseDate == "�����"){
+		else if (releaseDate == "목요일"){
 			setSales((this.point * 3 * 100000000 - 7 * 1000000000) * 0.1097);
 		}
 		else{
@@ -141,7 +142,7 @@ public class PreShowingMovie extends Movie {
 		}
 	}
 	
-	public PreShowingMovie(String genre, int age, double expect, String country, String releaseDate) {
+	public PreShowingMovie(String genre, String age, double expect, String country, String releaseDate) {
 		setGenre(genre);
 		setAge(age);
 		setExpect(expect);

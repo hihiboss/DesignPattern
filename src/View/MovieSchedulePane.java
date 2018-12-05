@@ -66,17 +66,17 @@ public class MovieSchedulePane extends JFrame {
             for (int j = 0; j < 6; j++)        //6관까지
             {
                 int writespot = startx;
-                int hour = timeschedule.getTheaterlist().getTheaterList().get(j).getStartTime() / 60;
-                int minute = timeschedule.getTheaterlist().getTheaterList().get(j).getStartTime() % 60;
+                int hour = timeschedule.getTheaterlist().getTheaterAt(j).getStartTime() / 60;
+                int minute = timeschedule.getTheaterlist().getTheaterAt(j).getStartTime() % 60;
 
-                for (int i = 0; i < timeschedule.getTheaterlist().getTheaterList().get(j).getMovieList().size(); i++)            //각 관의 상영횟수만큼 배치
+                for (int i = 0; i < timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getLength(); i++)            //각 관의 상영횟수만큼 배치
                 {
-                    g.drawString(timeschedule.getTheaterlist().getTheaterList().get(j).getMovieList().get(i).getName()
+                    g.drawString(timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getName()
                             , writespot + startx / 10, height / 6 * j + height / 24);        //영화이름
                     g.drawString(hour + "시 " + minute + "분", writespot + startx / 7, height / 6 * j + height / 12);
-                    writespot += ((timeschedule.getTheaterlist().getTheaterList().get(j).getMovieList().get(i).getTime()) / 60.0 / 24) * timewidth;
-                    minute += (timeschedule.getTheaterlist().getTheaterList().get(j).getMovieList().get(i).getTime() % 60);
-                    hour += (timeschedule.getTheaterlist().getTheaterList().get(j).getMovieList().get(i).getTime() / 60);
+                    writespot += ((timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime()) / 60.0 / 24) * timewidth;
+                    minute += (timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime() % 60);
+                    hour += (timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime() / 60);
                     if (minute >= 60) {
                         minute -= 60;
                         hour++;

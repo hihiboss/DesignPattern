@@ -11,7 +11,6 @@ import Model.Movie;
 import Model.TimeScheduleList;
 import Model.TotalMovieList;
 import View.Calender;
-import View.GUI;
 import View.MovieSchedulePane;
 
 public class ExeListener implements ActionListener {
@@ -38,10 +37,10 @@ public class ExeListener implements ActionListener {
 		JButton b = (JButton)e.getSource();
 		switch(b.getText()){
 		case "½ÇÇà":
-			for (int h = 0; h < TotalMovieList.getInstance().getmList().size(); h++){
-				TotalMovieList.getInstance().getmList().get(h).setPercentSales();
+			for (int h = 0; h < TotalMovieList.getInstance().getmList().getLength(); h++){
+				TotalMovieList.getInstance().getmList().getMovieAt(h).setPercentSales();
 			}
-			if (TotalMovieList.getInstance().getmList().size() >= 4 && day != -1){
+			if (TotalMovieList.getInstance().getmList().getLength() >= 4 && day != -1){
 				TotalMovieList.getInstance().setTotalNumberMovie();
 				TotalMovieList.getInstance().setMSortlist();
 				TotalMovieList.getInstance().setTimeList();
@@ -50,38 +49,34 @@ public class ExeListener implements ActionListener {
 					if (calender.calBtn[h].getText().equals(Integer.toString(day))){
 						if (h % 7 == 6){
 							for(int i=0; i < 6; i++){
-								timeScheduleList.getTimeschedulelist().get(
+								timeScheduleList.getTimeScheduleAt(
 										day+1).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+2].setBackground(Color.PINK);
-								timeScheduleList.getTimeschedulelist().get(
+								timeScheduleList.getTimeScheduleAt(
 										day+2).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+3].setBackground(Color.PINK);
 								
 								
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+1));
+							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeScheduleAt(day+1));
 						}
 						else if (h % 7 == 0){
 							for(int i=0; i < 6; i++){
-								timeScheduleList.getTimeschedulelist().get(
+								timeScheduleList.getTimeScheduleAt(
 										day+2).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+3].setBackground(Color.PINK);
-								timeScheduleList.getTimeschedulelist().get(
+								timeScheduleList.getTimeScheduleAt(
 										day+3).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+4].setBackground(Color.PINK);
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+2));
+							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeScheduleAt(day+2));
 						}
 						else {
 							for(int i=0; i < 6; i++){
-								timeScheduleList.getTimeschedulelist().get(
-										day+1).getTheaterlist().setTimeList(i);
+								timeScheduleList.getTimeScheduleAt(day+1).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+2].setBackground(Color.PINK);
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+1));
+							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeScheduleAt(day+1));
 						}
 					}
 				}

@@ -6,19 +6,21 @@ public class TimeSchedule {
 	private int year;
 	private int month;
 	private int date;
-	private TheaterList theaterlist = new TheaterList();
-	private ArrayList<Movie> mList = new ArrayList<Movie>();
+	private TheaterList theaterList = new TheaterList();
+	private MovieList mList = new MovieList();
 	
 	
-	public void setTheaterlist(TheaterList theaterlist) {
-		this.theaterlist = theaterlist;
+	public void setTheaterlist(TheaterList theaterList) {
+		this.theaterList = theaterList;
 	}
-	public ArrayList<Movie> getmList() {
+	public MovieList getmList() {
 		return mList;
 	}
-	public void setmList(ArrayList<Movie> mList) {
-		for (Movie m : mList){
-			this.mList.add(m);
+	public void setmList(MovieList mList) {
+		Iterator it = mList.iterator();
+
+		while (it.hasNext()) {
+			this.mList.addMovie((Movie) it.next());
 		}
 	}
 	public int getYear() {
@@ -40,6 +42,6 @@ public class TimeSchedule {
 		this.date = date;
 	}
 	public TheaterList getTheaterlist() {
-		return theaterlist;
+		return theaterList;
 	}
 }

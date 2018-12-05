@@ -133,13 +133,13 @@ public class Calender extends JPanel implements ActionListener {
             TimeSchedule timeschedule = new TimeSchedule();
             timeschedule.setYear(year);
             timeschedule.setMonth(month);
-            timeschedule.setDate(TimeScheduleList.getInstance().getTimeschedulelist().get(
-                    TimeScheduleList.getInstance().getTimeschedulelist().size() - 1).getDate() + 1);
+            timeschedule.setDate(TimeScheduleList.getInstance().getTimeScheduleAt(
+                    TimeScheduleList.getInstance().getLength() - 1).getDate() + 1);
             TimeScheduleList.getInstance().addTimeSchedule(timeschedule);
         }
         if (Controller.getInstance().getTimeschedule().size() != 0) {
             for (int h = 0; h <= 4; h++) {
-                TimeScheduleList.getInstance().getTimeschedulelist().get(h).setTheaterlist(
+                TimeScheduleList.getInstance().getTimeScheduleAt(h).setTheaterlist(
                         Controller.getInstance().getTimeschedule().get(h).getTheaterlist());
             }
         }
@@ -192,7 +192,7 @@ public class Calender extends JPanel implements ActionListener {
 
     public void gridInit() {
         //jPanel3에 버튼 붙이기
-        TimeScheduleList.getInstance().getTimeschedulelist().clear();
+        TimeScheduleList.getInstance().clear();
         for (int i = 0; i < days.length; i++) {
             panWest.add(calBtn[i] = new JButton(days[i]));
             calBtn[i].setFont(new Font("San-Serif", Font.PLAIN, 25));
