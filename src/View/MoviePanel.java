@@ -24,6 +24,62 @@ public class MoviePanel extends JPanel {
     private JTextField expectation_t = new JTextField();
     private JButton expectation_e = new JButton("»Æ¿Œ");
 
+    public JCheckBox getPlay() {
+        return play;
+    }
+
+    public JCheckBox getBeforeplay() {
+        return beforeplay;
+    }
+
+    public JButton getTitle_e() {
+        return title_e;
+    }
+
+    public JButton getPlaytime_e() {
+        return playtime_e;
+    }
+
+    public JComboBox getAge_e() {
+        return age_e;
+    }
+
+    public JComboBox getNation_e() {
+        return nation_e;
+    }
+
+    public JComboBox getGenre_e() {
+        return genre_e;
+    }
+
+    public JComboBox getReleasedate_e() {
+        return releasedate_e;
+    }
+
+    public JButton getDatesales_e() {
+        return datesales_e;
+    }
+
+    public JTextField getExpectation_t() {
+        return expectation_t;
+    }
+
+    public JButton getExpectation_e() {
+        return expectation_e;
+    }
+
+    public JTextField getPlaytime_t() {
+        return playtime_t;
+    }
+
+    public JTextField getTitle_t() {
+        return title_t;
+    }
+
+    public JTextField getDatesales_t() {
+        return datesales_t;
+    }
+
     public MoviePanel(){
 
         //
