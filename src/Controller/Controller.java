@@ -1,10 +1,10 @@
-package Controller;
-
-import java.util.ArrayList;
-
-import Model.TimeSchedule;
-
-public class Controller {
+//package Controller;
+//
+//import java.util.ArrayList;
+//
+//import Model.TimeSchedule;
+//
+//public class Controller {
 //	private static final Controller ourInstance = new Controller();
 //	public static Controller getInstance(){
 //		return ourInstance;
@@ -95,4 +95,4 @@ public class Controller {
 //	public void addTimeschedule(TimeSchedule timeschedule) {
 //		this.timeschedule.add(timeschedule);
 //	}
-}
+//}

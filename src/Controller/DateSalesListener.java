@@ -4,22 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import View.GUI;
+import View.MoviePanel;
 
 public class DateSalesListener implements ActionListener {
 
-	private double dataSales;
-	private String name;
-	private int playTime;
+	private MoviePanel moviePanel;
 
-	public DateSalesListener(double dataSales, String name, int playTime) {
-		this.dataSales = dataSales;
-		this.name = name;
-		this.playTime = playTime;
+	public DateSalesListener(MoviePanel moviePanel) {
+		this.moviePanel = moviePanel;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String name = moviePanel.getTitle_t().getText();
+		int playTime = Integer.parseInt(moviePanel.getPlaytime_t().getText());
+
 		try{
 			Controller.getInstance().setDateSales(Double.parseDouble(GUI.getInstance().datesales_t.getText()));
 		}
