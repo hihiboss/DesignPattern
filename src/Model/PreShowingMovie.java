@@ -8,6 +8,7 @@ public class PreShowingMovie extends Movie {
 	private double expect;
 	private double country;
 	private double point;
+	private String releaseDate;
 	
 	public double getGenre() {
 		return genre;
@@ -123,12 +124,16 @@ public class PreShowingMovie extends Movie {
 	public void setPoint() {
 		this.point = this.age + this.country + this.expect + this.genre;
 	}
-	
+
+	public void setReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
 	public void pointToSales() {
-		if (Controller.getInstance().getReleaseDate() == 0){
+		if (releaseDate == "수요일"){
 			setSales((this.point * 3 * 100000000 - 7 * 1000000000) * 0.1263);
 		}
-		else if (Controller.getInstance().getReleaseDate() == 1){
+		else if (releaseDate == "목요일"){
 			setSales((this.point * 3 * 100000000 - 7 * 1000000000) * 0.1097);
 		}
 		else{
@@ -136,11 +141,12 @@ public class PreShowingMovie extends Movie {
 		}
 	}
 	
-	public PreShowingMovie(String genre, int age, double expect, String country) {
+	public PreShowingMovie(String genre, int age, double expect, String country, String releaseDate) {
 		setGenre(genre);
 		setAge(age);
 		setExpect(expect);
 		setCountry(country);
+		setReleaseDate(releaseDate);
 		setPoint();
 		pointToSales();
 	}
