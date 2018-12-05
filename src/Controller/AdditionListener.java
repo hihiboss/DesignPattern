@@ -8,6 +8,26 @@ import Model.*;
 import View.*;
 
 public class AdditionListener implements ActionListener {
+	private double dateSales;
+	private String name;
+	private int playTime;
+	private double expect;
+	private int releaseDate;
+	private String genre;
+	private String nation;
+	private int age;
+
+	public AdditionListener(double dateSales, String name, int playTime, double expect, int releaseDate,
+							String genre, int age, String nation) {
+		this.dateSales = dateSales;
+		this.name = name;
+		this.playTime = playTime;
+		this.expect = expect;
+		this.releaseDate = releaseDate;
+		this.genre = genre;
+		this.age = age;
+		this.nation = nation;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -15,12 +35,12 @@ public class AdditionListener implements ActionListener {
 		
 		if (GUI.getInstance().addInformation.isEnabled() == true){
 			if (GUI.getInstance().play.isSelected() == true){
-				if (Controller.getInstance().getDateSales() != -1 &&
-						Controller.getInstance().getName() != null &&
-						Controller.getInstance().getPlayTime() != -1){
-					ShowingMovie movie = new ShowingMovie(Controller.getInstance().getDateSales());
-					movie.setName(Controller.getInstance().getName());
-					movie.setTime(Controller.getInstance().getPlayTime());
+				if (dateSales != -1 &&
+						name != null &&
+						playTime != -1){
+					ShowingMovie movie = new ShowingMovie(dateSales);
+					movie.setName(name);
+					movie.setTime(playTime);
 					TotalMovieList.getInstance().addMList(movie);
 					GUI.getInstance().addInformation.setEnabled(false);
 					GUI.getInstance().title_t.setText("");
@@ -38,17 +58,17 @@ public class AdditionListener implements ActionListener {
 				if (GUI.getInstance().genre_e.getSelectedIndex() != 0 &&
 						GUI.getInstance().nation_e.getSelectedIndex() != 0 &&
 						GUI.getInstance().age_e.getSelectedIndex() != 0 &&
-						Controller.getInstance().getExpect() != -1 &&
-						Controller.getInstance().getName() != null &&
-						Controller.getInstance().getPlayTime() != -1 &&
-						Controller.getInstance().getReleaseDate() != -1){
+						expect != -1 &&
+						name != null &&
+						playTime != -1 &&
+						releaseDate != -1){
 					PreShowingMovie movie = new PreShowingMovie(
-							Controller.getInstance().getGenre()
-							,Controller.getInstance().getAge()
-							,Controller.getInstance().getExpect()
-							,Controller.getInstance().getNation());
-					movie.setName(Controller.getInstance().getName());
-					movie.setTime(Controller.getInstance().getPlayTime());
+							genre
+							,age
+							,expect
+							,nation;
+					movie.setName(name);
+					movie.setTime(playTime);
 					TotalMovieList.getInstance().addMList(movie);
 					GUI.getInstance().addInformation.setEnabled(false);
 					GUI.getInstance().title_t.setText("");
