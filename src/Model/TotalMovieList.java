@@ -3,7 +3,10 @@ package Model;
 import java.util.ArrayList;
 
 public class TotalMovieList {
-
+	private static final TotalMovieList ourInstance = new TotalMovieList();
+	public static TotalMovieList getInstance() {
+		return ourInstance;
+	}
 	private final ArrayList<Integer> movieNumberList = new ArrayList<Integer>();
 	private final ArrayList<Movie> movieList = new ArrayList<Movie>();
 	private final ArrayList<Movie> mList = new ArrayList<Movie>();
@@ -11,7 +14,7 @@ public class TotalMovieList {
 	private final ArrayList<String> movieNameList = new ArrayList<String>();
 	private final ArrayList<Integer> priorityList = new ArrayList<Integer>();
 	private int totalNumberMovie;
-		
+
 	public ArrayList<Movie> getMovieList() {
 		return movieList;
 	}
@@ -31,7 +34,7 @@ public class TotalMovieList {
 	public void addMList(Movie movie) {
 		this.mList.add(movie);
 	}
-	
+
 	public ArrayList<Movie> getmList() {
 		return mList;
 	}
@@ -39,7 +42,7 @@ public class TotalMovieList {
 	public ArrayList<Movie> getmSortList() {
 		return mSortList;
 	}
-	
+
 	public void q_sort(Movie[] movieArray, int left, int right){
 		int l_hold, r_hold, pivot_index;
 		Movie pivot;
@@ -51,26 +54,26 @@ public class TotalMovieList {
 			while((movieArray[right].getPercentSales() <= pivot.getPercentSales()) && (left < right)){
 				right--;
 			}
-			
+
 			if (left != right){
 				movieArray[left] = movieArray[right];
 			}
-			
+
 			while ((movieArray[left].getPercentSales() >= pivot.getPercentSales()) && (left < right)){
 				left++;
 			}
-			
+
 			if (left != right){
 				movieArray[right] = movieArray[left];
 				right--;
 			}
 		}
-		
+
 		movieArray[left] = pivot;
 		pivot_index = left;
 		left = l_hold;
 		right = r_hold;
-		
+
 		if (left < pivot_index){
 			q_sort(movieArray, left, pivot_index - 1);
 		}
@@ -78,11 +81,11 @@ public class TotalMovieList {
 			q_sort(movieArray, pivot_index + 1, right);
 		}
 	}
-	
+
 	public void setMSortlist() {
 		Movie[] mArray = new Movie[mList.size()];
 		Movie temp;
-		
+
 		for (int h = 0; h < mList.size(); h++){
 			mArray[h] = this.mList.get(h);
 		}

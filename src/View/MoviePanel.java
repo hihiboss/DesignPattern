@@ -5,7 +5,7 @@ import Controller.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class MoviePanel extends JPanel {
+public class MoviePanel extends JPanel implements UpdateObserver {
 
     private JCheckBox play = new JCheckBox();
     private JCheckBox beforeplay = new JCheckBox();
@@ -27,68 +27,53 @@ public class MoviePanel extends JPanel {
     public JCheckBox getPlay() {
         return play;
     }
-
     public JCheckBox getBeforeplay() {
         return beforeplay;
     }
-
     public JButton getTitle_e() {
         return title_e;
     }
-
     public JButton getPlaytime_e() {
         return playtime_e;
     }
-
     public JComboBox getAge_e() {
         return age_e;
     }
-
     public JComboBox getNation_e() {
         return nation_e;
     }
-
     public JComboBox getGenre_e() {
         return genre_e;
     }
-
     public JComboBox getReleasedate_e() {
         return releasedate_e;
     }
-
     public JButton getDatesales_e() {
         return datesales_e;
     }
-
     public JTextField getExpectation_t() {
         return expectation_t;
     }
-
     public JButton getExpectation_e() {
         return expectation_e;
     }
-
     public JTextField getPlaytime_t() {
         return playtime_t;
     }
-
     public JTextField getTitle_t() {
         return title_t;
     }
-
     public JTextField getDatesales_t() {
         return datesales_t;
     }
 
     public MoviePanel(){
 
-        //
         JPanel playing = new JPanel();
         PlayListener playlistener = new PlayListener();
         play.addItemListener(playlistener);
         playing.setLayout(new BorderLayout());
 
-        //
         JPanel playing_w = new JPanel();
 
         playing_w.setLayout(new GridLayout(1, 2));
@@ -106,7 +91,6 @@ public class MoviePanel extends JPanel {
         datesales.add(datesales_t, BorderLayout.CENTER);
         datesales.add(datesales_e, BorderLayout.EAST);
 
-        //
         JPanel beforeplaying = new JPanel();
         BeforePlayListener beforeplaylistener = new BeforePlayListener();
         beforeplay.addItemListener(beforeplaylistener);
@@ -201,5 +185,10 @@ public class MoviePanel extends JPanel {
         datesales_t.setVisible(false);
         datesales_e.setVisible(false);
         releasedate_e.setVisible(false);
+    }
+
+    @Override
+    public void update(Object data) {
+
     }
 }

@@ -13,6 +13,7 @@ import Model.TotalMovieList;
 import View.Calender;
 import View.GUI;
 import View.MovieSchedulePane;
+import View.MovieSchedulePanel;
 
 public class ExeListener implements ActionListener {
 
@@ -59,8 +60,12 @@ public class ExeListener implements ActionListener {
 								
 								
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+1));
+							MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
+							MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+
+
+
+							timeScheduleList.getTimeschedulelist().get(day+1)
 						}
 						else if (h % 7 == 0){
 							for(int i=0; i < 6; i++){
@@ -71,8 +76,12 @@ public class ExeListener implements ActionListener {
 										day+3).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+4].setBackground(Color.PINK);
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+2));
+							MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
+							MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+
+
+							timeScheduleList.getTimeschedulelist().get(
+									day+2)
 						}
 						else {
 							for(int i=0; i < 6; i++){
@@ -80,8 +89,11 @@ public class ExeListener implements ActionListener {
 										day+1).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+2].setBackground(Color.PINK);
 							}
-							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									day+1));
+							MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
+							MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+
+							timeScheduleList.getTimeschedulelist().get(
+									day+1)
 						}
 					}
 				}

@@ -2,7 +2,7 @@ package Model;
 
 import java.util.*;
 
-public class TheaterList {
+public class TheaterList{
 	private ArrayList<Theater> theaterList = new ArrayList<Theater>();
 	
 	public TheaterList(){
@@ -24,7 +24,7 @@ public class TheaterList {
 		return theaterList;
 	}
 	
-	public void setTimeList(int get){
+	public void setTimeList(int roomNumber){
 		TotalMovieList.getInstance().setPriority();
 		String name = "";
 		int index = 0;
@@ -53,31 +53,31 @@ public class TheaterList {
 			}
 			else {
 				if (name.equals(TotalMovieList.getInstance().getMovieList().get(h).getName())){
-					if (this.theaterList.get(get).getPlayTime() > 1440){
+					if (this.theaterList.get(roomNumber).getPlayTime() > 1440){
 						location--;
 						if (location%2 == 0){
 							TotalMovieList.getInstance().getMovieList().add(h,
-									this.theaterList.get(get).getMovieList().get(0));
-							this.theaterList.get(get).getMovieList().remove(0);
+									this.theaterList.get(roomNumber).getMovieList().get(0));
+							this.theaterList.get(roomNumber).getMovieList().remove(0);
 							TotalMovieList.getInstance().getMovieNumberList().set(index,
 									TotalMovieList.getInstance().getMovieNumberList().get(index)+1);
 						}
 						else{
 							TotalMovieList.getInstance().getMovieList().add(h,
-									this.theaterList.get(get).getMovieList().get(
-											this.theaterList.get(get).getMovieList().size()-1));
-							this.theaterList.get(get).getMovieList().remove(
-									this.theaterList.get(get).getMovieList().size()-1);
+									this.theaterList.get(roomNumber).getMovieList().get(
+											this.theaterList.get(roomNumber).getMovieList().size()-1));
+							this.theaterList.get(roomNumber).getMovieList().remove(
+									this.theaterList.get(roomNumber).getMovieList().size()-1);
 							TotalMovieList.getInstance().getMovieNumberList().set(index,
 									TotalMovieList.getInstance().getMovieNumberList().get(index)+1);
 						}
 						break;
 					}
 					if (location % 2 == 0){
-						this.theaterList.get(get).getMovieList().add(0,
+						this.theaterList.get(roomNumber).getMovieList().add(0,
 								TotalMovieList.getInstance().getMovieList().get(h));
-						this.theaterList.get(get).setPlayTime(
-								this.theaterList.get(get).getPlayTime()
+						this.theaterList.get(roomNumber).setPlayTime(
+								this.theaterList.get(roomNumber).getPlayTime()
 								+ TotalMovieList.getInstance().getMovieList().get(h).getTime());
 						TotalMovieList.getInstance().getMovieList().remove(h);
 						h = -1;
@@ -85,10 +85,10 @@ public class TheaterList {
 								TotalMovieList.getInstance().getMovieNumberList().get(index)-1);
 					}
 					else {
-						this.theaterList.get(get).getMovieList().add(
+						this.theaterList.get(roomNumber).getMovieList().add(
 								TotalMovieList.getInstance().getMovieList().get(h));
-						this.theaterList.get(get).setPlayTime(
-								this.theaterList.get(get).getPlayTime()
+						this.theaterList.get(roomNumber).setPlayTime(
+								this.theaterList.get(roomNumber).getPlayTime()
 								+ TotalMovieList.getInstance().getMovieList().get(h).getTime());
 						TotalMovieList.getInstance().getMovieList().remove(h);
 						h = -1;
