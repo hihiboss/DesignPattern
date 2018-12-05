@@ -20,12 +20,15 @@ public class ExeListener implements ActionListener {
 	private JButton execution;
 	private DefaultTableModel model;
 	private TimeScheduleList timeScheduleList;
+	private int day;
 
-	public ExeListener (Calender calender, JButton execution, DefaultTableModel model, TimeScheduleList timeScheduleList){
+	public ExeListener (Calender calender, JButton execution, DefaultTableModel model, TimeScheduleList timeScheduleList,
+						int day){
 		this.calender = calender;
 		this.execution = execution;
 		this.model = model;
 		this.timeScheduleList = timeScheduleList;
+		this.day = day;
 	}
 
 	@Override
@@ -38,47 +41,47 @@ public class ExeListener implements ActionListener {
 			for (int h = 0; h < TotalMovieList.getInstance().getmList().size(); h++){
 				TotalMovieList.getInstance().getmList().get(h).setPercentSales();
 			}
-			if (TotalMovieList.getInstance().getmList().size() >= 4 && Controller.getInstance().getDay() != -1){
+			if (TotalMovieList.getInstance().getmList().size() >= 4 && day != -1){
 				TotalMovieList.getInstance().setTotalNumberMovie();
 				TotalMovieList.getInstance().setMSortlist();
 				TotalMovieList.getInstance().setTimeList();
 				// 시간 조정... -> 이건 TimeScheduling 한후 해야됨.
 				for (int h = 0; h < 49; h++){
-					if (calender.calBtn[h].getText().equals(Integer.toString(Controller.getInstance().getDay()))){
+					if (calender.calBtn[h].getText().equals(Integer.toString(day))){
 						if (h % 7 == 6){
 							for(int i=0; i < 6; i++){
 								timeScheduleList.getTimeschedulelist().get(
-										Controller.getInstance().getDay()+1).getTheaterlist().setTimeList(i);
+										day+1).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+2].setBackground(Color.PINK);
 								timeScheduleList.getTimeschedulelist().get(
-										Controller.getInstance().getDay()+2).getTheaterlist().setTimeList(i);
+										day+2).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+3].setBackground(Color.PINK);
 								
 								
 							}
 							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									Controller.getInstance().getDay()+1));
+									day+1));
 						}
 						else if (h % 7 == 0){
 							for(int i=0; i < 6; i++){
 								timeScheduleList.getTimeschedulelist().get(
-										Controller.getInstance().getDay()+2).getTheaterlist().setTimeList(i);
+										day+2).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+3].setBackground(Color.PINK);
-								TimeScheduleList.getInstance().getTimeschedulelist().get(
-										Controller.getInstance().getDay()+3).getTheaterlist().setTimeList(i);
+								timeScheduleList.getTimeschedulelist().get(
+										day+3).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+4].setBackground(Color.PINK);
 							}
 							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									Controller.getInstance().getDay()+2));
+									day+2));
 						}
 						else {
 							for(int i=0; i < 6; i++){
 								timeScheduleList.getTimeschedulelist().get(
-										Controller.getInstance().getDay()+1).getTheaterlist().setTimeList(i);
+										day+1).getTheaterlist().setTimeList(i);
 								calender.calBtn[h+2].setBackground(Color.PINK);
 							}
 							MovieSchedulePane pane = new MovieSchedulePane(timeScheduleList.getTimeschedulelist().get(
-									Controller.getInstance().getDay()+1));
+									day+1));
 						}
 					}
 				}
@@ -91,7 +94,7 @@ public class ExeListener implements ActionListener {
 				
 				// ButtonSet
 				for (JButton n : calender.calBtn){
-					if (n.getText().equals(Integer.toString(Controller.getInstance().getDay()))){
+					if (n.getText().equals(Integer.toString(day))){
 						n.setEnabled(true);
 					}
 				}
