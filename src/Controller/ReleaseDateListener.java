@@ -12,6 +12,8 @@ public class ReleaseDateListener implements ItemListener {
 	private int playTime;
 	private int releaseDate;
 
+	private VerifyListener verifyListener;
+
 	public ReleaseDateListener(double expect, String name, int playTime, int releaseDate) {
 		this.expect = expect;
 		this.name = name;
@@ -22,27 +24,7 @@ public class ReleaseDateListener implements ItemListener {
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
-		JComboBox b = (JComboBox)e.getSource();
-		switch((String)b.getSelectedItem()){
-		case"수요일":
-			Controller.getInstance().setReleaseDate(0);
-			break;
-		case"목요일":
-			Controller.getInstance().setReleaseDate(1);
-			break;
-		default:
-			Controller.getInstance().setReleaseDate(-1);
-			break;
-		}
-
-		if (GUI.getInstance().genre_e.getSelectedIndex() != 0 &&
-				GUI.getInstance().nation_e.getSelectedIndex() != 0 &&
-				GUI.getInstance().age_e.getSelectedIndex() != 0 &&
-				expect != -1 &&
-				name != null &&
-				playTime != -1 &&
-				releaseDate != -1){
-			GUI.getInstance().addInformation.setEnabled(true);
-		}
+		verifyListener = new ReleaseDateVerify();
+		verifyListener.verify();
 	}
 }

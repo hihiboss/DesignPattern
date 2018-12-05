@@ -13,6 +13,8 @@ public class GenreListener implements ItemListener {
 	private int playTime;
 	private int releaseDate;
 
+	private VerifyListener verifyListener;
+
 	public GenreListener(double expect, String name, int playTime, int releaseDate) {
 		this.expect = expect;
 		this.name = name;
@@ -23,17 +25,7 @@ public class GenreListener implements ItemListener {
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
-		JComboBox b = (JComboBox)e.getSource();
-		Controller.getInstance().setGenre((String)b.getSelectedItem());
-		
-		if (GUI.getInstance().genre_e.getSelectedIndex() != 0 &&
-				GUI.getInstance().nation_e.getSelectedIndex() != 0 &&
-				GUI.getInstance().age_e.getSelectedIndex() != 0 &&
-				expect != -1 &&
-				name != null &&
-				playTime != -1 &&
-				releaseDate != -1){
-			GUI.getInstance().addInformation.setEnabled(true);
-		}
+		verifyListener = new GenreVerify();
+		verifyListener.verify();
 	}
 }
