@@ -3,28 +3,49 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import View.GUI;
+import Model.Movie;
+import View.*;
 
-public class ExpectationListener implements ActionListener {
+public class ExpectationListener implements ActionListener, VerifyListener {
 
-	private double expect;
-	private String name;
-	private int playTime;
-	private int releaseDate;
+	private MoviePanelInterface moviePanel;
+	private AddMoviePanelInterface addMoviePanel;
 
-	private VerifyListener verifyListener;
-
-	public ExpectationListener(double expect, String name, int playTime, int releaseDate) {
-			this.expect = expect;
-			this.name = name;
-			this.playTime = playTime;
-			this.releaseDate = releaseDate;
+	public ExpectationListener(MoviePanelInterface moviePanel, AddMoviePanelInterface addMoviePanel) {
+		this.moviePanel = moviePanel;
+		this.addMoviePanel = addMoviePanel;
+		moviePanel.setExpectationListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		verifyListener = new ExpectationVerify();
-		verifyListener.verify();
+		verify();
+	}
+
+	@Override
+	public void verify() {
+
+		String name = moviePanel.getTitle_t().getText();
+		int playTime = Integer.parseInt(moviePanel.getPlaytime_t().getText());
+		String releaseDate = moviePanel.getReleasedate_e().getSelectedItem().toString();
+		double expect;
+
+		try{
+			expect = Double.parseDouble(moviePanel.getExpectation_t().getText());
+		}
+		catch(NumberFormatException e1){
+			expect = -1;
+		}
+
+		if (moviePanel.getGenre_e().getSelectedIndex() != 0 &&
+				moviePanel.getAge_e().getSelectedIndex() != 0 &&
+				moviePanel.getNation_e().getSelectedIndex() != 0 &&
+				expect != -1 &&
+				name != null &&
+				playTime != -1 &&
+				releaseDate != null){
+			addMoviePanel.getAddInformation().setEnabled(true);
+		}
 	}
 }

@@ -5,7 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Vector;
 
-public class InputMoviePanel extends JPanel implements UpdateObserver {
+public class InputMoviePanel extends JPanel implements UpdateObserver, InputMoviePanelInterface {
 
     private DefaultTableModel model;
     private Vector<String> userColumn = new Vector<>();

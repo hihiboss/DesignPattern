@@ -1,9 +1,10 @@
 package Controller;
 
-import View.Observer;
+
+import View.UpdateObserver;
 
 public interface SubjectTimeSchedule {
-    public void add(Observer o);
-    public void remove(Observer o);
-    public void updateSubject(int index);
+    public void add(UpdateObserver o);
+    public void remove(UpdateObserver o);
+    public void updateSubject(Object index);
 }

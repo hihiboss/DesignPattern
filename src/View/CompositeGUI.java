@@ -20,6 +20,6 @@ public class CompositeGUI implements UpdateObserver {
 
     @Override
     public void update(Object o){
-        for()
+
     }
 }

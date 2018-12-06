@@ -9,16 +9,17 @@ import View.*;
 
 public class AdditionListener implements ActionListener {
 
-	private MoviePanel moviePanel;
-	private AddMoviePanel addMoviePanel;
-	private InputMoviePanel inputMoviePanel;
+	private MoviePanelInterface moviePanel;
+	private AddMoviePanelInterface addMoviePanel;
+	private InputMoviePanelInterface inputMoviePanel;
 	private TotalMovieList totalMovieList;
 
-	public AdditionListener(MoviePanel moviePanel, AddMoviePanel addMoviePanel, InputMoviePanel inputMoviePanel, TotalMovieList totalMovieList) {
+	public AdditionListener(MoviePanelInterface moviePanel, AddMoviePanelInterface addMoviePanel, InputMoviePanelInterface inputMoviePanel, TotalMovieList totalMovieList) {
 		this.moviePanel = moviePanel;
 		this.addMoviePanel = addMoviePanel;
 		this.inputMoviePanel = inputMoviePanel;
 		this.totalMovieList = totalMovieList;
+		addMoviePanel.setAddInformationListener(this);
 	}
 
 	protected void settingMovieGUI(Movie movie){

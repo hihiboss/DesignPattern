@@ -4,28 +4,40 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.JComboBox;
 
-import View.GUI;
+import View.*;
 
-public class NationListener implements ItemListener {
+public class NationListener implements ItemListener, VerifyListener {
 
-	private double expect;
-	private String name;
-	private int playTime;
-	private int releaseDate;
+	private MoviePanelInterface moviePanel;
+	private AddMoviePanelInterface addMoviePanel;
 
-	private VerifyListener verifyListener;
-
-	public NationListener(double expect, String name, int playTime, int releaseDate) {
-		this.expect = expect;
-		this.name = name;
-		this.playTime = playTime;
-		this.releaseDate = releaseDate;
+	public NationListener(MoviePanelInterface moviePanel, AddMoviePanelInterface addMoviePanel) {
+		this.moviePanel = moviePanel;
+		this.addMoviePanel = addMoviePanel;
+		moviePanel.setNationListener(this);
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
-		verifyListener = new NationVerify();
-		verifyListener.verify();
+		verify();
+	}
+
+	@Override
+	public void verify() {
+		String name = moviePanel.getTitle_t().getText();
+		double expect = Double.parseDouble(moviePanel.getExpectation_t().getText());
+		String releaseDate = moviePanel.getReleasedate_e().getSelectedItem().toString();
+		int playTime = Integer.parseInt(moviePanel.getPlaytime_t().getText());
+
+		if (moviePanel.getGenre_e().getSelectedIndex() != 0 &&
+				moviePanel.getNation_e().getSelectedIndex() != 0 &&
+				moviePanel.getAge_e().getSelectedIndex() != 0 &&
+				expect != -1 &&
+				name != null &&
+				playTime != -1 &&
+				releaseDate != null){
+			addMoviePanel.getAddInformation().setEnabled(true);
+		}
 	}
 }

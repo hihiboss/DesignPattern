@@ -2,11 +2,16 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class AddMoviePanel extends JPanel implements UpdateObserver {
+public class AddMoviePanel extends JPanel implements AddMoviePanelInterface {
 
     public JButton getAddInformation() {
         return addInformation;
+    }
+
+    public void setAddInformationListener(ActionListener addInformationListener){
+        addInformation.addActionListener(addInformationListener);
     }
 
     private JButton addInformation = new JButton("Ãß°¡");
@@ -20,10 +25,5 @@ public class AddMoviePanel extends JPanel implements UpdateObserver {
         this.add(new JLabel(""));
 
         addInformation.setEnabled(false);
-    }
-
-    @Override
-    public void update(Object data) {
-
     }
 }

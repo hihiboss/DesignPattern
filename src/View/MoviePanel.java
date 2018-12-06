@@ -4,8 +4,10 @@ import Controller.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
-public class MoviePanel extends JPanel implements UpdateObserver {
+public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInterface {
 
     private JCheckBox play = new JCheckBox();
     private JCheckBox beforeplay = new JCheckBox();
@@ -67,11 +69,41 @@ public class MoviePanel extends JPanel implements UpdateObserver {
         return datesales_t;
     }
 
-    public MoviePanel(){
+    public void setDateSalesListener(ActionListener actionListener){
+        datesales_e.addActionListener(actionListener);
+    }
+
+    public void setBeforeplayListener(ItemListener itemListener){
+        beforeplay.addItemListener(itemListener);
+    }
+
+    public void setGenreListener(ItemListener itemListener){
+        genre_e.addItemListener(itemListener);
+    }
+
+    public void setNationListener(ItemListener itemListener){
+        nation_e.addItemListener(itemListener);
+    }
+
+    public void setAgeListener(ItemListener itemListener){
+        age_e.addItemListener(itemListener);
+    }
+
+    public void setExpectationListener(ActionListener actionListener){
+        expectation_e.addActionListener(actionListener);
+    }
+
+    public void setReleasedateListener(ItemListener itemListener){
+        releasedate_e.addItemListener(itemListener);
+    }
+
+    public void setPlayListener(ItemListener itemListener){
+        play.addItemListener(itemListener);
+    }
+
+    public MoviePanel(AddMoviePanel addMoviePanel){
 
         JPanel playing = new JPanel();
-        PlayListener playlistener = new PlayListener();
-        play.addItemListener(playlistener);
         playing.setLayout(new BorderLayout());
 
         JPanel playing_w = new JPanel();
@@ -84,16 +116,12 @@ public class MoviePanel extends JPanel implements UpdateObserver {
         playing.add(new JLabel(""), BorderLayout.EAST);
 
         JPanel datesales = new JPanel();
-        DateSalesListener datesaleslistener = new DateSalesListener();
-        datesales_e.addActionListener(datesaleslistener);
         datesales.setLayout(new BorderLayout());
         datesales.add(new JLabel("일별 매출액 : "), BorderLayout.WEST);
         datesales.add(datesales_t, BorderLayout.CENTER);
         datesales.add(datesales_e, BorderLayout.EAST);
 
         JPanel beforeplaying = new JPanel();
-        BeforePlayListener beforeplaylistener = new BeforePlayListener();
-        beforeplay.addItemListener(beforeplaylistener);
         beforeplaying.setLayout(new BorderLayout());
         JPanel beforeplaying_w = new JPanel();
 
@@ -105,53 +133,41 @@ public class MoviePanel extends JPanel implements UpdateObserver {
         beforeplaying.add(new JLabel(""), BorderLayout.EAST);
 
         JPanel genre = new JPanel();
-        GenreListener genrelistener = new GenreListener();
-        genre_e.addItemListener(genrelistener);
         genre.setLayout(new BorderLayout());
         genre.add(new JLabel("      장르   :   "), BorderLayout.WEST);
         genre.add(genre_e, BorderLayout.CENTER);
 
         JPanel nation = new JPanel();
-        NationListener nationlistener = new NationListener();
-        nation_e.addItemListener(nationlistener);
         nation.setLayout(new BorderLayout());
         nation.add(new JLabel("  제작 국가 :   "), BorderLayout.WEST);
         nation.add(nation_e, BorderLayout.CENTER);
 
         JPanel age = new JPanel();
-        AgeListener agelistener = new AgeListener();
+        AgeListener agelistener = new AgeListener(this, addMoviePanel);
         age_e.addItemListener(agelistener);
         age.setLayout(new BorderLayout());
         age.add(new JLabel("  관람 연령 :   "), BorderLayout.WEST);
         age.add(age_e, BorderLayout.CENTER);
 
         JPanel expectation = new JPanel();
-        ExpectationListener expectationlistener = new ExpectationListener();
-        expectation_e.addActionListener(expectationlistener);
         expectation.setLayout(new BorderLayout());
         expectation.add(new JLabel("기대해요  : "), BorderLayout.WEST);
         expectation.add(expectation_t, BorderLayout.CENTER);
         expectation.add(expectation_e, BorderLayout.EAST);
 
         JPanel title = new JPanel();
-        TitleListener titlelistener = new TitleListener();
-        title_e.addActionListener(titlelistener);
         title.setLayout(new BorderLayout());
         title.add(new JLabel("영화제목 : "), BorderLayout.WEST);
         title.add(title_t, BorderLayout.CENTER);
         title.add(title_e, BorderLayout.EAST);
 
         JPanel playtime = new JPanel();
-        PlayTimeListener playtimelistener = new PlayTimeListener();
-        playtime_e.addActionListener(playtimelistener);
         playtime.setLayout(new BorderLayout());
         playtime.add(new JLabel("상영시간 : "), BorderLayout.WEST);
         playtime.add(playtime_t, BorderLayout.CENTER);
         playtime.add(playtime_e, BorderLayout.EAST);
 
         JPanel releasedate = new JPanel();
-        ReleaseDateListener releasedatelistener = new ReleaseDateListener();
-        releasedate_e.addItemListener(releasedatelistener);
         releasedate.setLayout(new BorderLayout());
         releasedate.add(new JLabel("개봉요일  : "), BorderLayout.WEST);
         releasedate.add(releasedate_e, BorderLayout.CENTER);

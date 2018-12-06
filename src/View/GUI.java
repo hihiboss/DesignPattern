@@ -7,27 +7,46 @@ import Controller.*;
 import javax.swing.*;
 
 public class GUI extends JFrame {
+    private MoviePanel moviePanel;
+    private AddMoviePanel addition;
+    private InputMoviePanel inputMovie;
+    private SchedulePanel schedulePanel;
+    private Calender calender;
+
+    public MoviePanel getMoviePanel() {
+        return moviePanel;
+    }
+
+    public AddMoviePanel getAddition() {
+        return addition;
+    }
+
+    public Calender getCalender() {
+        return calender;
+    }
+
+    public InputMoviePanel getInputMovie() {
+        return inputMovie;
+    }
+
+    public SchedulePanel getSchedulePanel() {
+        return schedulePanel;
+    }
+
     public GUI() {
         this.setTitle("Movie Scheduling");
 
         JPanel West = new JPanel();
         West.setLayout(new BorderLayout());
 
-        SchedulePanel schedulePanel = new SchedulePanel();
-        Calender calender = new Calender(schedulePanel.getExecution());
+        schedulePanel = new SchedulePanel();
+        calender = new Calender();
         West.add(calender, BorderLayout.CENTER);
 
-        InputMoviePanel inputMovie = new InputMoviePanel();
+        inputMovie = new InputMoviePanel();
 
-        MoviePanel moviePanel = new MoviePanel();
-
-
-        AddMoviePanel addition = new AddMoviePanel();
-        AdditionListener additionlistener = new AdditionListener();
-        addition.getAddInformation().addActionListener(additionlistener);
-
-        ExeListener exelistener = new ExeListener();
-        schedulePanel.getExecution().addActionListener(exelistener);
+        addition = new AddMoviePanel();
+        moviePanel = new MoviePanel(addition);
 
         moviePanel.add(addition);
         moviePanel.add(new JLabel(""));
@@ -48,9 +67,5 @@ public class GUI extends JFrame {
         this.add(East);
         this.setVisible(true);
         this.setSize(2300, 1000);
-    }
-
-    public static void main(String[] args) {
-        GUI gui = new GUI();
     }
 }

@@ -2,13 +2,18 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class SchedulePanel extends JPanel implements UpdateObserver {
+public class SchedulePanel extends JPanel implements UpdateObserver, SchedulePanelInterface {
 
     private JButton execution = new JButton("½ÇÇà");
 
     public JButton getExecution() {
         return execution;
+    }
+
+    public void setExecutionListener(ActionListener actionListener){
+        execution.addActionListener(actionListener);
     }
 
     public SchedulePanel(){

@@ -8,29 +8,103 @@ import javax.swing.*;
 import Controller.*;
 import Model.*;
 
-public class Calender extends JPanel {
+public class Calender extends JPanel implements CalenderInterface {
     String[] days = {"일", "월", "화", "수", "목", "금", "토"};
-    int year, month, day, todays, memoday = 0;
+    private int year, month, day, todays, memoday = 0;
     Font f;
     Color bc, fc;
     Calendar today;
-    Calendar cal;
-    JButton btnBefore, btnAfter;
-    public JButton[] calBtn = new JButton[49];
+    private Calendar cal;
+    private JButton btnBefore, btnAfter;
+    private JButton[] calBtn = new JButton[49];
     JLabel thing;
     JLabel time;
-    JPanel panWest;
+    private JPanel panWest;
     JPanel panSouth;
     JPanel panNorth;
-    JTextField txtMonth, txtYear;
+    private JTextField txtMonth, txtYear;
     JTextField txtTime;
     BorderLayout bLayout = new BorderLayout();
 
-    private JButton execution;
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setTodays(int todays) {
+        this.todays = todays;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getTodays() {
+        return todays;
+    }
+
+    public int getMemoday() {
+        return memoday;
+    }
+
+    public Calendar getCal() {
+        return cal;
+    }
+
+    public JTextField getTxtMonth() {
+        return txtMonth;
+    }
+
+    public JTextField getTxtYear() {
+        return txtYear;
+    }
+
+    public void setCalButton(int index, JButton button){
+        calBtn[index] = button;
+    }
+
+    public JButton[] getCalBtn() {
+        return calBtn;
+    }
+
+    public JButton getCalButton(int index){
+        return calBtn[index];
+    }
+
+    public JPanel getPanWest() {
+        return panWest;
+    }
+
+    public JButton getBtnBefore() {
+        return btnBefore;
+    }
+
+    public JButton getBtnAfter() {
+        return btnAfter;
+    }
+
+    public void setBtnListener(ActionListener actionListener){
+        btnAfter.addActionListener(actionListener);
+        btnBefore.addActionListener(actionListener);
+    }
 
     ////////////////////////////////////////
-    public Calender(JButton execution) {
-        this.execution = execution;
+    public Calender() {
         this.setLayout(bLayout);
         today = Calendar.getInstance(); //디폴트의 타임 존 및 로케일을 사용해 달력을 가져옵니다.
         cal = new GregorianCalendar();
@@ -55,12 +129,7 @@ public class Calender extends JPanel {
         //이놈은 달력에 날에 해당하는 부분
         panWest = new JPanel(new GridLayout(7, 7));//격자나,눈금형태의 배치관리자
         f = new Font("Sherif", Font.BOLD, 12);
-        CalenderListener calenderListener = new CalenderListener(execution, calBtn, cal, txtMonth, txtYear, panWest);
         this.add(panWest, bLayout.CENTER);
-
-        btnBefore.addActionListener(calenderListener);
-        btnAfter.addActionListener(calenderListener);
-
 
         setPreferredSize(new Dimension(600, 400));
         setMaximumSize(this.getPreferredSize());
