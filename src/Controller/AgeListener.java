@@ -4,7 +4,7 @@ import View.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class AgeListener implements ItemListener, VerifyListener {
+public class AgeListener implements ItemListener{
     private MoviePanelInterface moviePanel;
     private AddMoviePanelInterface addMoviePanel;
 
@@ -17,24 +17,7 @@ public class AgeListener implements ItemListener, VerifyListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         // TODO Auto-generated method stub
-        verify();
-    }
-
-    @Override
-    public void verify() {
-        String name = moviePanel.getTitle_t().getText();
-        double expect = Double.parseDouble(moviePanel.getExpectation_t().getText());
-        String releaseDate = moviePanel.getReleasedate_e().getSelectedItem().toString();
-        int playTime = Integer.parseInt(moviePanel.getPlaytime_t().getText());
-
-        if (moviePanel.getGenre_e().getSelectedIndex() != 0 &&
-                moviePanel.getNation_e().getSelectedIndex() != 0 &&
-                moviePanel.getAge_e().getSelectedIndex() != 0 &&
-                expect != -1 &&
-                name != null &&
-                playTime != -1 &&
-                releaseDate != null){
-            addMoviePanel.getAddInformation().setEnabled(true);
-        }
+        Verify verify = new VerifyAddMovie(moviePanel, addMoviePanel);
+        verify.verify();
     }
 }

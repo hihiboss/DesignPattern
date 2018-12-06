@@ -15,26 +15,21 @@ public class PlayListener implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         // TODO Auto-generated method stub
-        boolean play_temp = true;
-        boolean temp = false;
+
+        boolean check;
+        boolean showing;
+        boolean preshowing = false;
 
         if(e.getStateChange() == ItemEvent.SELECTED) {
-            play_temp = false;
-            temp = true;
+            showing = true;
+            check = false;
         }
         else {
-            play_temp = true;
-            temp = false;
+            showing = false;
+            check = true;
         }
 
-        moviePanel.getBeforeplay().setVisible(play_temp);
-        moviePanel.getDatesales_t().setVisible(temp);
-        moviePanel.getDatesales_e().setVisible(temp);
-
-        moviePanel.getGenre_e().setVisible(false);
-        moviePanel.getNation_e().setVisible(false);
-        moviePanel.getAge_e().setVisible(false);
-        moviePanel.getExpectation_e().setVisible(false);
-        moviePanel.getReleasedate_e().setVisible(false);
+        Verify verify = new VerifyCheckType(moviePanel, check, showing, preshowing, 0);
+        verify.verify();
     }
 }

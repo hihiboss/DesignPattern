@@ -3,10 +3,9 @@ package Controller;
 import View.*;
 import java.awt.event.*;
 
-public class BeforePlayListener implements ItemListener, VerifyListener {
+public class BeforePlayListener implements ItemListener {
 
     private MoviePanelInterface moviePanel;
-    private int state;
 
     public BeforePlayListener(MoviePanelInterface moviePanel) {
         moviePanel.setBeforeplayListener(this);
@@ -16,34 +15,21 @@ public class BeforePlayListener implements ItemListener, VerifyListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         // TODO Auto-generated method stub
-        this.state = e.getStateChange();
-        verify();
-    }
 
-    @Override
-    public void verify() {
-        boolean play_temp = true;
-        boolean temp = false;
+        boolean check;
+        boolean showing = false;
+        boolean preshowing;
 
-        if(state == ItemEvent.SELECTED) {
-            temp = true;
-            play_temp = false;
+        if(e.getStateChange() == ItemEvent.SELECTED) {
+            preshowing = true;
+            check = false;
         }
         else {
-            temp = false;
-            play_temp = true;
+            preshowing = false;
+            check = true;
         }
 
-        moviePanel.getPlay().setVisible(play_temp);
-        moviePanel.getGenre_e().setVisible(temp);
-        moviePanel.getNation_e().setVisible(temp);
-        moviePanel.getAge_e().setVisible(temp);
-        moviePanel.getExpectation_e().setVisible(temp);
-        moviePanel.getExpectation_t().setVisible(temp);
-        moviePanel.getReleasedate_e().setVisible(temp);
-
-
-        moviePanel.getDatesales_e().setVisible(false);
-        moviePanel.getDatesales_t().setVisible(false);
+        Verify verify = new VerifyCheckType(moviePanel, check, showing, preshowing, 1);
+        verify.verify();
     }
 }
