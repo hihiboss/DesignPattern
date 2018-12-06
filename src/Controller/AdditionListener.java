@@ -48,7 +48,7 @@ public class AdditionListener implements ActionListener {
                 if (dateSales != -1 &&
                         name != null &&
                         playTime != -1){
-                    Movie movie = MovieFactory.getMovie(new ShowingMovieFactory(dateSales));
+                    Movie movie = MovieFactory.getInstance().getMovie(new ShowingMovieFactory(dateSales));
                     movie.setName(name);
                     movie.setTime(playTime);
                     totalMovieList.addMList(movie);
@@ -74,7 +74,7 @@ public class AdditionListener implements ActionListener {
                         name != null &&
                         playTime != -1 &&
                         releaseDate != null){
-                    Movie movie = MovieFactory.getMovie(new PreShowingMovieFactory(genre, age, expect, nation, releaseDate));
+                    Movie movie = MovieFactory.getInstance().getMovie(new PreShowingMovieFactory(genre, age, expect, nation, releaseDate));
                     movie.setName(name);
                     movie.setTime(playTime);
                     totalMovieList.addMList(movie);
