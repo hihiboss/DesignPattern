@@ -9,7 +9,7 @@ import Controller.*;
 import Model.*;
 
 public class Calender extends JPanel implements CalenderInterface {
-    String[] days = {"ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä"};
+    String[] days = {"ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† "};
     private int year, month, day, todays, memoday = 0;
     Font f;
     Color bc, fc;
@@ -106,16 +106,16 @@ public class Calender extends JPanel implements CalenderInterface {
     ////////////////////////////////////////
     public Calender() {
         this.setLayout(bLayout);
-        today = Calendar.getInstance(); //µğÆúÆ®ÀÇ Å¸ÀÓ Á¸ ¹× ·ÎÄÉÀÏÀ» »ç¿ëÇØ ´Ş·ÂÀ» °¡Á®¿É´Ï´Ù.
+        today = Calendar.getInstance(); //ë””í´íŠ¸ì˜ íƒ€ì„ ì¡´ ë° ë¡œì¼€ì¼ì„ ì‚¬ìš©í•´ ë‹¬ë ¥ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
         cal = new GregorianCalendar();
         year = today.get(Calendar.YEAR);
-        month = today.get(Calendar.MONTH) + 1;//1¿ùÀÇ °ªÀÌ 0
+        month = today.get(Calendar.MONTH) + 1;//1ì›”ì˜ ê°’ì´ 0
         panNorth = new JPanel();
         panNorth.add(btnBefore = new JButton("Before"));
         btnBefore.setFont(new Font("San-Serif", Font.PLAIN, 35));
-        panNorth.add(txtYear = new JTextField(year + "³â"));
+        panNorth.add(txtYear = new JTextField(year + "ë…„"));
 
-        panNorth.add(txtMonth = new JTextField(month + "¿ù", 3));
+        panNorth.add(txtMonth = new JTextField(month + "ì›”", 3));
 
         txtYear.setEnabled(false);
         txtMonth.setEnabled(false);
@@ -126,8 +126,8 @@ public class Calender extends JPanel implements CalenderInterface {
         txtYear.setFont(f);
         txtMonth.setFont(f);
         this.add(panNorth, bLayout.NORTH);
-        //ÀÌ³ğÀº ´Ş·Â¿¡ ³¯¿¡ ÇØ´çÇÏ´Â ºÎºĞ
-        panWest = new JPanel(new GridLayout(7, 7));//°İÀÚ³ª,´«±İÇüÅÂÀÇ ¹èÄ¡°ü¸®ÀÚ
+        //ì´ë†ˆì€ ë‹¬ë ¥ì— ë‚ ì— í•´ë‹¹í•˜ëŠ” ë¶€ë¶„
+        panWest = new JPanel(new GridLayout(7, 7));//ê²©ìë‚˜,ëˆˆê¸ˆí˜•íƒœì˜ ë°°ì¹˜ê´€ë¦¬ì
         f = new Font("Sherif", Font.BOLD, 12);
         this.add(panWest, bLayout.CENTER);
 

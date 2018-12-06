@@ -14,7 +14,7 @@ public class AddMoviePanel extends JPanel implements AddMoviePanelInterface {
         addInformation.addActionListener(addInformationListener);
     }
 
-    private JButton addInformation = new JButton("Ãß°¡");
+    private JButton addInformation = new JButton("ì¶”ê°€");
 
     public AddMoviePanel(){
         this.setLayout(new GridLayout(1, 3));

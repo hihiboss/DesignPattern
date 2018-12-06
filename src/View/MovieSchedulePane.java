@@ -10,16 +10,16 @@ public class MovieSchedulePane extends JFrame{
 
     private int width, height;        //size
 
-    public MovieSchedulePane(MovieSchedulePanel movieSchedulePanel) {        //6°³ÀÇ ¿äÀÏ ¿µÈ­ list¸¦ ºÒ·¯¿Â´Ù
+    public MovieSchedulePane(MovieSchedulePanel movieSchedulePanel) {        //6ê°œì˜ ìš”ì¼ ì˜í™” listë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤
 
-        //±âº» size ¼³Á¤
+        //ê¸°ë³¸ size ì„¤ì •
         setTitle("show movie time");
         width = 1490;
         height = 600;
         setSize(width, height);
         setVisible(true);
 
-        //contentpaneÀ» ¼³Á¤
+        //contentpaneì„ ì„¤ì •
         setContentPane(movieSchedulePanel);
     }
 }

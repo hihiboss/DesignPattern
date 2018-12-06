@@ -12,19 +12,19 @@ public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInte
     private JCheckBox play = new JCheckBox();
     private JCheckBox beforeplay = new JCheckBox();
     private JTextField title_t = new JTextField();
-    private JButton title_e = new JButton("È®ÀÎ");
+    private JButton title_e = new JButton("í™•ì¸");
     private JTextField playtime_t = new JTextField();
-    private JButton playtime_e = new JButton("È®ÀÎ");
+    private JButton playtime_e = new JButton("í™•ì¸");
 
-    private JComboBox age_e = new JComboBox(new String[]{"", "ÀüÃ¼ ÀÌ¿ë°¡", "12¼¼ ÀÌ¿ë°¡", "15¼¼ ÀÌ¿ë°¡", "19¼¼ ÀÌ¿ë°¡"});
+    private JComboBox age_e = new JComboBox(new String[]{"", "ì „ì²´ ì´ìš©ê°€", "12ì„¸ ì´ìš©ê°€", "15ì„¸ ì´ìš©ê°€", "19ì„¸ ì´ìš©ê°€"});
     private JComboBox nation_e = new JComboBox(new String[]{"", "Korea", "USA", "Europe", "Japan", "China", "ex"});
     private JComboBox genre_e = new JComboBox(new String[]{"", "Action", "Thriller", "Drama", "SF", "Adventure", "Fantasy", "Romance", "Crime", "Comedy", "Mystery", "Animation", "War", "Horror"});
-    private JComboBox releasedate_e = new JComboBox(new String[]{"", "¼ö¿äÀÏ", "¸ñ¿äÀÏ"});
+    private JComboBox releasedate_e = new JComboBox(new String[]{"", "ìˆ˜ìš”ì¼", "ëª©ìš”ì¼"});
 
     private JTextField datesales_t = new JTextField();
-    private JButton datesales_e = new JButton("È®ÀÎ");
+    private JButton datesales_e = new JButton("í™•ì¸");
     private JTextField expectation_t = new JTextField();
-    private JButton expectation_e = new JButton("È®ÀÎ");
+    private JButton expectation_e = new JButton("í™•ì¸");
 
     public JCheckBox getPlay() {
         return play;
@@ -109,7 +109,7 @@ public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInte
         JPanel playing_w = new JPanel();
 
         playing_w.setLayout(new GridLayout(1, 2));
-        playing_w.add(new JLabel("»ó¿µ "));
+        playing_w.add(new JLabel("ìƒì˜ "));
         playing_w.add(play);
 
         playing.add(playing_w, BorderLayout.WEST);
@@ -117,7 +117,7 @@ public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInte
 
         JPanel datesales = new JPanel();
         datesales.setLayout(new BorderLayout());
-        datesales.add(new JLabel("ÀÏº° ¸ÅÃâ¾× : "), BorderLayout.WEST);
+        datesales.add(new JLabel("ì¼ë³„ ë§¤ì¶œì•¡ : "), BorderLayout.WEST);
         datesales.add(datesales_t, BorderLayout.CENTER);
         datesales.add(datesales_e, BorderLayout.EAST);
 
@@ -126,7 +126,7 @@ public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInte
         JPanel beforeplaying_w = new JPanel();
 
         beforeplaying_w.setLayout(new GridLayout(1, 2));
-        beforeplaying_w.add(new JLabel("°³ºÀ Àü "));
+        beforeplaying_w.add(new JLabel("ê°œë´‰ ì „ "));
         beforeplaying_w.add(beforeplay);
 
         beforeplaying.add(beforeplaying_w, BorderLayout.WEST);
@@ -134,42 +134,42 @@ public class MoviePanel extends JPanel implements UpdateObserver, MoviePanelInte
 
         JPanel genre = new JPanel();
         genre.setLayout(new BorderLayout());
-        genre.add(new JLabel("      Àå¸£   :   "), BorderLayout.WEST);
+        genre.add(new JLabel("      ì¥ë¥´   :   "), BorderLayout.WEST);
         genre.add(genre_e, BorderLayout.CENTER);
 
         JPanel nation = new JPanel();
         nation.setLayout(new BorderLayout());
-        nation.add(new JLabel("  Á¦ÀÛ ±¹°¡ :   "), BorderLayout.WEST);
+        nation.add(new JLabel("  ì œì‘ êµ­ê°€ :   "), BorderLayout.WEST);
         nation.add(nation_e, BorderLayout.CENTER);
 
         JPanel age = new JPanel();
         AgeListener agelistener = new AgeListener(this, addMoviePanel);
         age_e.addItemListener(agelistener);
         age.setLayout(new BorderLayout());
-        age.add(new JLabel("  °ü¶÷ ¿¬·É :   "), BorderLayout.WEST);
+        age.add(new JLabel("  ê´€ëŒ ì—°ë ¹ :   "), BorderLayout.WEST);
         age.add(age_e, BorderLayout.CENTER);
 
         JPanel expectation = new JPanel();
         expectation.setLayout(new BorderLayout());
-        expectation.add(new JLabel("±â´ëÇØ¿ä  : "), BorderLayout.WEST);
+        expectation.add(new JLabel("ê¸°ëŒ€í•´ìš”  : "), BorderLayout.WEST);
         expectation.add(expectation_t, BorderLayout.CENTER);
         expectation.add(expectation_e, BorderLayout.EAST);
 
         JPanel title = new JPanel();
         title.setLayout(new BorderLayout());
-        title.add(new JLabel("¿µÈ­Á¦¸ñ : "), BorderLayout.WEST);
+        title.add(new JLabel("ì˜í™”ì œëª© : "), BorderLayout.WEST);
         title.add(title_t, BorderLayout.CENTER);
         title.add(title_e, BorderLayout.EAST);
 
         JPanel playtime = new JPanel();
         playtime.setLayout(new BorderLayout());
-        playtime.add(new JLabel("»ó¿µ½Ã°£ : "), BorderLayout.WEST);
+        playtime.add(new JLabel("ìƒì˜ì‹œê°„ : "), BorderLayout.WEST);
         playtime.add(playtime_t, BorderLayout.CENTER);
         playtime.add(playtime_e, BorderLayout.EAST);
 
         JPanel releasedate = new JPanel();
         releasedate.setLayout(new BorderLayout());
-        releasedate.add(new JLabel("°³ºÀ¿äÀÏ  : "), BorderLayout.WEST);
+        releasedate.add(new JLabel("ê°œë´‰ìš”ì¼  : "), BorderLayout.WEST);
         releasedate.add(releasedate_e, BorderLayout.CENTER);
 
         this.setLayout(new GridLayout(28, 1));

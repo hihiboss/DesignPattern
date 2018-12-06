@@ -22,44 +22,44 @@ public class MovieSchedulePanel extends JPanel implements UpdateObserver {
 
         g = (Graphics2D) gp;
 
-        //Å« Å×µÎ¸® ±×¸®±â
+        //í° í…Œë‘ë¦¬ ê·¸ë¦¬ê¸°
         g.setColor(Color.black);
         g.drawRect(0, 0, width, height);
 
-        //¹è°æ»ö±Û Èò»öÀ¸·Î
+        //ë°°ê²½ìƒ‰ê¸€ í°ìƒ‰ìœ¼ë¡œ
         g.setColor(Color.white);
         g.fillRect(0, 0, width, height);
 
-        //±âº» Å×µÎ¸® ±×¸®±â
+        //ê¸°ë³¸ í…Œë‘ë¦¬ ê·¸ë¦¬ê¸°
         g.setColor(Color.black);
         for (int i = 0; i < 6; i++)
             g.drawLine(0, height / 6 * i, width, height / 6 * i);
         g.drawLine(50, 0, 50, height);
 
-        //°üÇ¥½ÃÇÏ±â
+        //ê´€í‘œì‹œí•˜ê¸°
         for (int i = 0; i < 6; i++)
-            g.drawString(i + 1 + "°ü", 20, height / 6 * i + height / 12);
+            g.drawString(i + 1 + "ê´€", 20, height / 6 * i + height / 12);
 
     }
 
     @Override
     public void update(Object data) {
         TimeSchedule timeschedule = (TimeSchedule) data;
-        int startx = 50;                        //Ãâ·ÂÀÌ ½Ã°£µÇ´Â xÃàÀÇ ÁÂÇ¥
-        int timewidth = width - startx;                    //ÀüÃ¼½Ã°£ÀÇ ±æÀÌ
-        int breaktime = timewidth * 20 / 60 / 24;            //½¬´Â½Ã°£ÀÇ ±æÀÌs
-        //¿µÈ­¹èÄ¡Ç¥¸¦ ±×¸®±â
-        for (int j = 0; j < 6; j++)        //6°ü±îÁö
+        int startx = 50;                        //ì¶œë ¥ì´ ì‹œê°„ë˜ëŠ” xì¶•ì˜ ì¢Œí‘œ
+        int timewidth = width - startx;                    //ì „ì²´ì‹œê°„ì˜ ê¸¸ì´
+        int breaktime = timewidth * 20 / 60 / 24;            //ì‰¬ëŠ”ì‹œê°„ì˜ ê¸¸ì´s
+        //ì˜í™”ë°°ì¹˜í‘œë¥¼ ê·¸ë¦¬ê¸°
+        for (int j = 0; j < 6; j++)        //6ê´€ê¹Œì§€
         {
             int writespot = startx;
             int hour = timeschedule.getTheaterlist().getTheaterAt(j).getStartTime() / 60;
             int minute = timeschedule.getTheaterlist().getTheaterAt(j).getStartTime() % 60;
 
-            for (int i = 0; i < timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getLength(); i++)            //°¢ °üÀÇ »ó¿µÈ½¼ö¸¸Å­ ¹èÄ¡
+            for (int i = 0; i < timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getLength(); i++)            //ê° ê´€ì˜ ìƒì˜íšŸìˆ˜ë§Œí¼ ë°°ì¹˜
             {
                 g.drawString(timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getName()
-                        , writespot + startx / 10, height / 6 * j + height / 24);        //¿µÈ­ÀÌ¸§
-                g.drawString(hour + "½Ã " + minute + "ºĞ", writespot + startx / 7, height / 6 * j + height / 12);
+                        , writespot + startx / 10, height / 6 * j + height / 24);        //ì˜í™”ì´ë¦„
+                g.drawString(hour + "ì‹œ " + minute + "ë¶„", writespot + startx / 7, height / 6 * j + height / 12);
                 writespot += ((timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime()) / 60.0 / 24) * timewidth;
                 minute += (timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime() % 60);
                 hour += (timeschedule.getTheaterlist().getTheaterAt(j).getMovieList().getMovieAt(i).getTime() / 60);
@@ -73,6 +73,6 @@ public class MovieSchedulePanel extends JPanel implements UpdateObserver {
                 writespot += breaktime;
             }
         }
-        //»ó¿µ°ü¸¶´Ù »ó¿µÈ½¼ö
+        //ìƒì˜ê´€ë§ˆë‹¤ ìƒì˜íšŸìˆ˜
     }
 }

@@ -14,7 +14,7 @@ import java.util.Calendar;
 
 public class CalenderListener implements ActionListener {
 
-    String[] days = {"ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±Ý", "Åä"};
+    String[] days = {"ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† "};
     private CalenderInterface calenderInterface;
     private SchedulePanelInterface schedulePanel;
     private TimeScheduleList timeScheduleList;
@@ -40,8 +40,8 @@ public class CalenderListener implements ActionListener {
             panelInit();
             calSet();
             hideInit();
-            calenderInterface.getTxtYear().setText(calenderInterface.getYear() + "³â");
-            calenderInterface.getTxtMonth().setText(calenderInterface.getMonth() + "¿ù");
+            calenderInterface.getTxtYear().setText(calenderInterface.getYear() + "ë…„");
+            calenderInterface.getTxtMonth().setText(calenderInterface.getMonth() + "ì›”");
         } else if (button.getText() == "After") {
             calenderInterface.getPanWest().removeAll();
             calInput(1);
@@ -49,13 +49,13 @@ public class CalenderListener implements ActionListener {
             panelInit();
             calSet();
             hideInit();
-            calenderInterface.getTxtYear().setText(calenderInterface.getYear() + "³â");
-            calenderInterface.getTxtMonth().setText(calenderInterface.getMonth() + "¿ù");
+            calenderInterface.getTxtYear().setText(calenderInterface.getYear() + "ë…„");
+            calenderInterface.getTxtMonth().setText(calenderInterface.getMonth() + "ì›”");
         } else if (Integer.parseInt(ae.getActionCommand()) >= 1 &&
                 Integer.parseInt(ae.getActionCommand()) <= 31) {
 
             calenderInterface.setDay(Integer.parseInt(ae.getActionCommand()));
-            //¹öÆ°ÀÇ ¹ë·ù Áï 1,2,3.... ¹®ÀÚ¸¦ Á¤¼öÇüÀ¸·Î º¯È¯ÇÏ¿© Å¬¸¯ÇÑ ³¯Â¥¸¦ ¹Ù²ãÁØ´Ù.
+            //ë²„íŠ¼ì˜ ë°¸ë¥˜ ì¦‰ 1,2,3.... ë¬¸ìžë¥¼ ì •ìˆ˜í˜•ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ í´ë¦­í•œ ë‚ ì§œë¥¼ ë°”ê¿”ì¤€ë‹¤.
             schedulePanel.getExecution().setEnabled(true);
             for (int h = 0; h < 49; h++) {
                 if (calenderInterface.getCalButton(h).getText().equals(ae.getActionCommand())) {
@@ -74,20 +74,20 @@ public class CalenderListener implements ActionListener {
         calenderInterface.getCal().set(Calendar.DATE, 1);
         int dayOfWeek = calenderInterface.getCal().get(Calendar.DAY_OF_WEEK);
         /*
-         * get ¹× set ¸¦ À§ÇÑ ÇÊµåÄ¡·Î, ¿äÀÏÀ» ³ªÅ¸³À´Ï´Ù.
-         * ÀÌ ÇÊµåÀÇ °ªÀº,SUNDAY,MONDAY,TUESDAY,WEDNESDAY
-         * ,THURSDAY,FRIDAY, ¹× SATURDAY °¡ µË´Ï´Ù.
-         * get()¸Þ¼ÒµåÀÇ ÀÇÇØ ¿äÀÏÀÌ ¼ýÀÚ·Î ¹ÝÈ¯
+         * get ë° set ë¥¼ ìœ„í•œ í•„ë“œì¹˜ë¡œ, ìš”ì¼ì„ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.
+         * ì´ í•„ë“œì˜ ê°’ì€,SUNDAY,MONDAY,TUESDAY,WEDNESDAY
+         * ,THURSDAY,FRIDAY, ë° SATURDAY ê°€ ë©ë‹ˆë‹¤.
+         * get()ë©”ì†Œë“œì˜ ì˜í•´ ìš”ì¼ì´ ìˆ«ìžë¡œ ë°˜í™˜
          */
         int j = 0;
         int hopping = 0;
-        calenderInterface.getCalButton(0).setForeground(new Color(255, 0, 0));//ÀÏ¿äÀÏ "ÀÏ"
-        calenderInterface.getCalButton(6).setForeground(new Color(0, 0, 255));//Åä¿äÀÏ "Åä"
+        calenderInterface.getCalButton(0).setForeground(new Color(255, 0, 0));//ì¼ìš”ì¼ "ì¼"
+        calenderInterface.getCalButton(6).setForeground(new Color(0, 0, 255));//í† ìš”ì¼ "í† "
         for (int i = calenderInterface.getCal().getFirstDayOfWeek(); i < dayOfWeek; i++) {
             j++;
         }
         /*
-         * ÀÏ¿äÀÏºÎÅÍ ±×´ÞÀÇ Ã¹½ÃÀÛ ¿äÀÏ±îÁö ºóÄ­À¸·Î ¼ÂÆÃÇÏ±â À§ÇØ
+         * ì¼ìš”ì¼ë¶€í„° ê·¸ë‹¬ì˜ ì²«ì‹œìž‘ ìš”ì¼ê¹Œì§€ ë¹ˆì¹¸ìœ¼ë¡œ ì…‹íŒ…í•˜ê¸° ìœ„í•´
          */
         hopping = j;
         for (int kk = 0; kk < hopping; kk++) {
@@ -107,17 +107,17 @@ public class CalenderListener implements ActionListener {
                 calenderInterface.getCalButton(i + 6 + hopping).setForeground(new Color(0, 255, 0));
             } else {
                 calenderInterface.getCalButton(i + 6 + hopping).setForeground(new Color(0, 0, 0));
-                if ((i + hopping - 1) % 7 == 0) {//ÀÏ¿äÀÏ
+                if ((i + hopping - 1) % 7 == 0) {//ì¼ìš”ì¼
                     calenderInterface.getCalButton(i + 6 + hopping).setForeground(new Color(255, 0, 0));
                 }
-                if ((i + hopping) % 7 == 0) {//Åä¿äÀÏ
+                if ((i + hopping) % 7 == 0) {//í† ìš”ì¼
                     calenderInterface.getCalButton(i + 6 + hopping).setForeground(new Color(0, 0, 255));
                 }
             }
             /*
-             * ¿äÀÏÀ» ÂïÀº ´ÙÀ½ºÎÅÍ °è»êÇØ¾ß ÇÏ´Ï ¿äÀÏÀ» ÂïÀº ¹öÆ°ÀÇ °¹¼ö¸¦ ´õÇÏ°í
-             * ÀÎµ¦½º°¡ 0ºÎÅÍ ½ÃÀÛÀÌ´Ï -1À» ÇØÁØ °ªÀ¸·Î ¿¬»êÀ» ÇØÁÖ°í
-             * ¹öÆ°ÀÇ »ö±òÀ» º¯°æÇØÁØ´Ù.
+             * ìš”ì¼ì„ ì°ì€ ë‹¤ìŒë¶€í„° ê³„ì‚°í•´ì•¼ í•˜ë‹ˆ ìš”ì¼ì„ ì°ì€ ë²„íŠ¼ì˜ ê°¯ìˆ˜ë¥¼ ë”í•˜ê³ 
+             * ì¸ë±ìŠ¤ê°€ 0ë¶€í„° ì‹œìž‘ì´ë‹ˆ -1ì„ í•´ì¤€ ê°’ìœ¼ë¡œ ì—°ì‚°ì„ í•´ì£¼ê³ 
+             * ë²„íŠ¼ì˜ ìƒ‰ê¹”ì„ ë³€ê²½í•´ì¤€ë‹¤.
              */
             calenderInterface.getCalButton(i + 6 + hopping).setFont(new Font("San-Serif", Font.PLAIN, 35));
             calenderInterface.getCalButton(i + 6 + hopping).setText((i) + "");
@@ -141,12 +141,12 @@ public class CalenderListener implements ActionListener {
         for (int i = 0; i < calenderInterface.getCalBtn().length; i++) {
             if ((calenderInterface.getCalButton(i).getText()).equals(""))
                 calenderInterface.getCalButton(i).setEnabled(false);
-            //ÀÏÀÌ ÂïÈ÷Áö ¾ÊÀº ³ª¸ÓÁö ¹öÆ°À» ºñÈ°¼ºÈ­ ½ÃÅ²´Ù.
+            //ì¼ì´ ì°ížˆì§€ ì•Šì€ ë‚˜ë¨¸ì§€ ë²„íŠ¼ì„ ë¹„í™œì„±í™” ì‹œí‚¨ë‹¤.
         }//end for
     }//end hideInit()
 
     public void gridInit() {
-        //jPanel3¿¡ ¹öÆ° ºÙÀÌ±â
+        //jPanel3ì— ë²„íŠ¼ ë¶™ì´ê¸°
         timeScheduleList.clear();
         for (int i = 0; i < days.length; i++) {
             calenderInterface.setCalButton(i, new JButton(days[i]));

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class SchedulePanel extends JPanel implements UpdateObserver, SchedulePanelInterface {
 
-    private JButton execution = new JButton("½ÇÇà");
+    private JButton execution = new JButton("ì‹¤í–‰");
 
     public JButton getExecution() {
         return execution;
