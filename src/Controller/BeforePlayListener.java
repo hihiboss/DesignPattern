@@ -3,13 +3,11 @@ package Controller;
 import View.*;
 import java.awt.event.*;
 
-public class BeforePlayListener implements ItemListener {
+public class BeforePlayListener extends VerifyAbstract implements ItemListener {
 
-    private MoviePanelInterface moviePanel;
-
-    public BeforePlayListener(MoviePanelInterface moviePanel) {
+    public BeforePlayListener(MoviePanelInterface moviePanel, Verify verify) {
+        super(verify);
         moviePanel.setBeforeplayListener(this);
-        this.moviePanel = moviePanel;
     }
 
     @Override
@@ -29,7 +27,6 @@ public class BeforePlayListener implements ItemListener {
             check = true;
         }
 
-        Verify verify = new VerifyCheckType(moviePanel, check, showing, preshowing, 1);
-        verify.verify();
+        verify.verify(check, showing, preshowing);
     }
 }

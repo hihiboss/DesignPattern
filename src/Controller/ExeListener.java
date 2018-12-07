@@ -40,6 +40,8 @@ public class ExeListener implements ActionListener {
 				for (int h = 0; h < totalMovieList.getmList().getLength(); h++){
 					totalMovieList.getmList().getMovieAt(h).setPercentSales();
 				}
+				MovieSchedulePanel movieSchedulePanel;
+				MovieSchedulePane pane;
 				if (totalMovieList.getmList().getLength() >= 4 && calender.getDay() != -1){
 					totalMovieList.setTotalNumberMovie();
 					totalMovieList.setMSortlist();
@@ -58,8 +60,8 @@ public class ExeListener implements ActionListener {
 
 
 								}
-								MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
-								MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+								movieSchedulePanel = new MovieSchedulePanel();
+								pane = new MovieSchedulePane(movieSchedulePanel);
 
 								timeScheduleList.add(movieSchedulePanel);
 
@@ -76,8 +78,8 @@ public class ExeListener implements ActionListener {
 											calender.getDay()+3).getTheaterlist().setTimeList(i, totalMovieList);
 									calender.getCalButton(h+4).setBackground(Color.PINK);
 								}
-								MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
-								MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+								movieSchedulePanel = new MovieSchedulePanel();
+								pane = new MovieSchedulePane(movieSchedulePanel);
 
 								timeScheduleList.add(movieSchedulePanel);
 
@@ -89,8 +91,8 @@ public class ExeListener implements ActionListener {
 									timeScheduleList.getTimeScheduleAt(calender.getDay()+1).getTheaterlist().setTimeList(i, totalMovieList);
 									calender.getCalButton(h+2).setBackground(Color.PINK);
 								}
-								MovieSchedulePanel movieSchedulePanel = new MovieSchedulePanel();
-								MovieSchedulePane pane = new MovieSchedulePane(movieSchedulePanel);
+								movieSchedulePanel = new MovieSchedulePanel();
+								pane = new MovieSchedulePane(movieSchedulePanel);
 
 								timeScheduleList.add(movieSchedulePanel);
 

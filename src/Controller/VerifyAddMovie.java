@@ -9,6 +9,7 @@ public class VerifyAddMovie extends Verify {
 
     public VerifyAddMovie(MoviePanelInterface moviePanelInterface, AddMoviePanelInterface addMoviePanel){
         super(moviePanelInterface);
+        this.addMoviePanel = addMoviePanel;
     }
 
     @Override
@@ -27,5 +28,10 @@ public class VerifyAddMovie extends Verify {
                 releaseDate != null){
             addMoviePanel.getAddInformation().setEnabled(true);
         }
+    }
+
+    @Override
+    public void verify(boolean check, boolean showing, boolean preshowing) {
+
     }
 }

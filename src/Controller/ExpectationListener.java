@@ -6,21 +6,16 @@ import java.awt.event.ActionListener;
 import Model.Movie;
 import View.*;
 
-public class ExpectationListener implements ActionListener {
+public class ExpectationListener extends VerifyAbstract implements ActionListener {
 
-    private MoviePanelInterface moviePanel;
-    private AddMoviePanelInterface addMoviePanel;
-
-    public ExpectationListener(MoviePanelInterface moviePanel, AddMoviePanelInterface addMoviePanel) {
-        this.moviePanel = moviePanel;
-        this.addMoviePanel = addMoviePanel;
+    public ExpectationListener(MoviePanelInterface moviePanel, Verify verify) {
+        super(verify);
         moviePanel.setExpectationListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-        Verify verify = new VerifyAddMovie(moviePanel, addMoviePanel);
         verify.verify();
     }
 }

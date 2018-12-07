@@ -3,12 +3,10 @@ package Controller;
 import View.*;
 import java.awt.event.*;
 
-public class PlayListener implements ItemListener {
+public class PlayListener extends VerifyAbstract implements ItemListener {
 
-    private MoviePanelInterface moviePanel;
-
-    public PlayListener(MoviePanelInterface moviePanel){
-        this.moviePanel = moviePanel;
+    public PlayListener(MoviePanelInterface moviePanel, Verify verify){
+        super(verify);
         moviePanel.setPlayListener(this);
     }
 
@@ -29,7 +27,6 @@ public class PlayListener implements ItemListener {
             check = true;
         }
 
-        Verify verify = new VerifyCheckType(moviePanel, check, showing, preshowing, 0);
-        verify.verify();
+        verify.verify(check, showing, preshowing);
     }
 }

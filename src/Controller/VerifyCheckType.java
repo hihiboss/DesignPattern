@@ -5,22 +5,21 @@ import View.MoviePanelInterface;
 
 public class VerifyCheckType extends Verify {
 
-    private boolean check;
-    private boolean showing;
-    private boolean preshowing;
     private int flag;
 
     public VerifyCheckType(MoviePanelInterface moviePanelInterface
-            , boolean check, boolean showing, boolean preshowing, int flag){
+            , int flag){
         super(moviePanelInterface);
-        this.check = check;
-        this.showing = showing;
-        this.preshowing = preshowing;
         this.flag = flag;
     }
 
     @Override
     public void verify() {
+
+    }
+
+    @Override
+    public void verify(boolean check, boolean showing, boolean preshowing) {
 
         if (flag == 0){
             moviePanel.getBeforeplay().setVisible(check);
